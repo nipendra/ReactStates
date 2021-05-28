@@ -49,7 +49,7 @@ export default function App() {
   // cost state = useSate("");
   // size = state[0];
   // setSize = state[1];
-  
+
 
   function renderProduct(p) {
     return (
@@ -63,6 +63,9 @@ export default function App() {
     );
   }
 
+  const filteredProducts = size ? products.filter(
+    (p) => p.skus.find((s) => s.size === parseInt(size))) : products;
+
   return (
     <div>
       <div className="content">
@@ -70,7 +73,10 @@ export default function App() {
         <main>
           <section id="filters">
             <label htmlFor="size">Filter by Size:</label>{" "}
-            <select id="size">
+            <select 
+                id="size" 
+                value={size}
+                onChange={(e)=>{setSize(e.target.value)}}>
               <option value="">All sizes</option>
               <option value="7">7</option>
               <option value="8">8</option>
@@ -78,7 +84,7 @@ export default function App() {
             </select>
           </section>
           <section id="products">
-            {products.map(renderProduct)}
+            {filteredProducts.map(renderProduct)}
           </section>
         </main>
       </div> 
