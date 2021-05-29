@@ -1,4 +1,11 @@
 import React from "react";
+import {Link, NavLink} from 'react-router-dom';
+// link is like anchor but react router handles the click so that page does
+// not reload
+
+const activeStyle = {
+  color: 'purple',
+};
 
 export default function Header() {
   return (
@@ -6,7 +13,15 @@ export default function Header() {
       <nav>
         <ul>
           <li>
-            <img alt="Carved Rock Fitness" src="/images/logo.png" />
+            <Link to='/'>
+              <img alt="Carved Rock Fitness" src="/images/logo.png" />
+            </Link>
+          </li>
+          <li>
+            <NavLink activeStyle={activeStyle} to='/shoes'>Shoes</NavLink>
+          </li>
+           <li>
+            <NavLink activeStyle={activeStyle} to='/cart'>Cart</NavLink>
           </li>
         </ul>
       </nav>
